@@ -21,11 +21,9 @@ class PeopleController < ApplicationController
     def show
         @person = Person.find(params[:id])
         
-        # redirect_to person_content_path(@person)
-        @contents = @person.contents
-        # @contents = @person.contents.paginate(:page => params[:page], :per_page => 5)
-        # @contents = @person.contents.order("created_at DESC").page(params[:page])
+        @contents = @person.contents.order('date DESC')
         
+        @person.sum = 0
         @person.contents.each do |content|
           if content.inout == '수입'
             @person.sum += content.cost

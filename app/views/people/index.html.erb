@@ -22,9 +22,11 @@
     body.main{
         background: url("/image/wave.jpg");
         background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
         
-            .btn-three {
+        .btn-three {
             color: #FFF;
             transition: all 0.5s;
             position: relative;
@@ -69,7 +71,8 @@
         margin: 10px;
         padding: 5px;
         border: none;
-        font-size: 20px;
+        font-size: 14px;
+        color: white;
     }
     
     input:focus {
@@ -112,12 +115,12 @@
     input.question:focus+label>span.input_span,
     input.question:valid+label>span.input_span {
       top: -78px;
-      font-size: 22px;
+      font-size: 16px;
       color: white;
     }
     
     input.question:valid+label {
-      border: solid 0.3px yellow;
+      border: solid 0.5px #adf6ff;
       transition: appear 2s ease;
     }
     
@@ -129,7 +132,7 @@
       margin: 0;
       position: absolute;
       color: white;
-      font-size: 30px;
+      font-size: 18px;
       top: -50px;
       left: 0px;
       z-index:-1;
@@ -138,13 +141,15 @@
     
     input[type="submit"] {
       transition: opacity 0.2s ease, background 0.2s ease;
-      display: block;
+      display: inline-block;
       opacity: 0;
       margin: 10px 0 0 0;
       padding: 10px;
       cursor: pointer;
     }
-    
+    select {
+      width: stretch;
+    }
     input[type="submit"]:hover {
       background: #eee;
     }
@@ -180,30 +185,31 @@
         opacity: 1;
       }
     }
-    
     </style>
 </head>
 
 <body class="main">
   <div class="container">
       <%= link_to new_person_path do %>
-          <div class="box-3">
-            <div class="btn btn-three">
+           <div class="btn btn-three" style="margin-bottom: 20px;">
               <span>연락처 추가</span>
             </div>
-          </div>
       <% end %><br>
   
-      <div>
-          <%= form_tag search_people_path, :method => :get do %>
+      <div style = "font-weight: bold; font-family: 'Nanum Gothic', sans-serif;">
+          <%= form_tag search_people_path, :method => :get  do %>
               <%= text_field_tag :search, nil, :class => 'question', :required => 'true' , :autocomplete => 'off' %>
                   <label for="search"><span class="input_span">이름 검색</span></label>
-              <%= submit_tag "검색", :id => 'search', :name => nil  %>
+             
+              <%= button_tag(type: "submit", class: "btn btn-outline-light", :id => 'search', :name => nil, style: "margin-top: 20px; letter-padding: -1px; font-weight: bold; font-family: 'Nanum Gothic', sans-serif;") do %> 검색<% end %>
           <% end %>
           
-          <%= form_tag search_people_path, :method => :get do %>
-              <%= select_tag :search, options_for_select([ "관계", "가족", "친구", "지인", "직장동료", "거래처", " 기타" ]) %>
-              <%= submit_tag "검색", :name => nil %>
+          <div style = "margin-bottom: 30px;">
+          <%= form_tag search_people_path, :method => :get, :class => 'form-inline'  do%>
+             <%= select_tag :search, options_for_select([ "관계", "가족", "친구", "지인", "직장동료", "거래처", " 기타" ]), {:class => 'form-control', :style => 'margin-top:20px; width: 200px; margin-right:10px;', :id => 'l'} %> 
+      
+              <%= button_tag(type: "submit", class: "btn btn-outline-light", style: "margin-top: 20px; letter-padding: -1px; font-weight: bold; font-family: 'Nanum Gothic', sans-serif;") do %> 검색<% end %>
+          </div>
           <% end %>
       </div>
       

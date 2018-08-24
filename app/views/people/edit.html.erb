@@ -14,6 +14,8 @@
         
       font-family: 'Nanum Gothic', sans-serif;
       background: url("/image/wave.jpg");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       background-size: cover;
       color: #D8E6F0;
     }
@@ -50,7 +52,7 @@
     
         <%= f.hidden_field :user_id, value: current_user.id %>
         <br><br>
-        <p style="text-align:right;"><%= f.button :변경, label: '등록' , class: 'btn btn-outline-dark' %></p>
+        <p style="text-align:right;"><%= f.button :변경, label: '등록' , class: 'btn btn-outline-light' %></p>
     <% end %>
     </div>
 </div>
